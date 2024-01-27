@@ -5,6 +5,7 @@ import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -40,7 +41,7 @@ object OkHttpModule {
     }
 
     @Provides
-    internal fun file(context: Context): File {
+    internal fun file(@ApplicationContext context: Context): File {
         val file = File(context.cacheDir, "HttpCache")
         file.mkdirs()
         return file

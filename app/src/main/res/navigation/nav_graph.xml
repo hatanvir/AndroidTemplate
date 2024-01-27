@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.tvr.androidtemplate.FirstFragment"
+        android:name="com.tvr.androidtemplate.features.post.PostFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_post">
 
-        <action
+       <!-- <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/SecondFragment" />-->
     </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.tvr.androidtemplate.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+   <!--<fragment
+       android:id="@+id/SecondFragment"
+       android:name="com.tvr.androidtemplate.SecondFragment"
+       android:label="@string/second_fragment_label"
+       tools:layout="@layout/fragment_second">
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+       <action
+           android:id="@+id/action_SecondFragment_to_FirstFragment"
+           app:destination="@id/FirstFragment" />
+   </fragment>-->
 </navigation>

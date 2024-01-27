@@ -79,7 +79,7 @@ android {
             resValue("string", "app_name", "Test")
             resValue( "string", "package_name", namespace!!)
             resValue("string", "db_name", "test_db")
-            resValue( "string", "default_server_url", "http://test.com/")
+            resValue( "string", "default_server_url", "https://jsonplaceholder.typicode.com")
         }
     }
 

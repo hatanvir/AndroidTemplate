@@ -8,6 +8,7 @@ import com.tvr.androidtemplate.MyApp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -20,7 +21,7 @@ class NetworkModule {
      * retrofit instance
      */
     @Provides
-    internal fun retrofit(context: Context, okHttpClient: OkHttpClient, coroutineCallAdapterFactory: CoroutineCallAdapterFactory, gsonConverterFactory: GsonConverterFactory, gson: Gson): Retrofit {
+    internal fun retrofit(@ApplicationContext context: Context, okHttpClient: OkHttpClient, coroutineCallAdapterFactory: CoroutineCallAdapterFactory, gsonConverterFactory: GsonConverterFactory, gson: Gson): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl((context.applicationContext as MyApp).getServerBaseUrl())
