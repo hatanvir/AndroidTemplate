@@ -3,18 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/PostFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/PostFragment"
         android:name="com.tvr.androidtemplate.features.post.PostFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/post"
         tools:layout="@layout/fragment_post">
-
-       <!-- <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />-->
     </fragment>
+
+    <fragment
+        android:id="@+id/PhotoFragment"
+        android:name="com.tvr.androidtemplate.features.photo.PhotoFragment"
+        android:label="@string/photo"
+        tools:layout="@layout/fragment_photo">
+    </fragment>
+
+
    <!--<fragment
        android:id="@+id/SecondFragment"
        android:name="com.tvr.androidtemplate.SecondFragment"
