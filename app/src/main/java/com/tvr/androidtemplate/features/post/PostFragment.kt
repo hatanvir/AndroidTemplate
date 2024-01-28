@@ -28,6 +28,8 @@ class PostFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = FragmentPostBinding.inflate(layoutInflater)
+        view.viewmodel = viewModel
+        view.lifecycleOwner = viewLifecycleOwner
         viewModel.getPost()
         observeData();
         return view.root;
