@@ -1,5 +1,6 @@
 package com.tvr.androidtemplate.features.post
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.tvr.androidtemplate.base.ViewState
 import com.tvr.androidtemplate.databinding.ActivityHomeBinding
 import com.tvr.androidtemplate.databinding.FragmentPostBinding
 import com.tvr.androidtemplate.features.home.HomeViewModel
+import com.tvr.androidtemplate.features.post.adapters.PostRecyclerviewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,33 +29,35 @@ class PostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = FragmentPostBinding.inflate(layoutInflater)
-        view.viewmodel = viewModel
-        view.lifecycleOwner = viewLifecycleOwner
+        binding = FragmentPostBinding.inflate(layoutInflater)
+        binding.viewmodel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         viewModel.getPost()
         observeData();
-        return view.root;
+        return binding.root;
     }
 
+    /**
+     * observing data from view model
+     */
     private fun observeData() {
         lifecycleScope.launch {
             viewModel.data.collect{
                 when(it){
                     is ViewState.Loading -> {
-                        Toast.makeText(activity, "Loading", Toast.LENGTH_LONG)
-                            .show()
+                        binding.postPb.visibility = View.VISIBLE
+                        binding.postRv.visibility = View.GONE
                     }
                     is ViewState.Success -> {
-                        Toast.makeText(activity, "Success", Toast.LENGTH_LONG)
-                            .show()
+                        binding.postPb.visibility = View.GONE
+                        binding.postRv.visibility = View.VISIBLE
                     }
                     is ViewState.Error -> {
-                        Toast.makeText(activity, "Error", Toast.LENGTH_LONG)
-                            .show()
+                        binding.postPb.visibility = View.GONE
+                        binding.postRv.visibility = View.GONE
                     }
                 }
             }
         }
     }
-
 }

@@ -17,7 +17,7 @@
             android:id="@+id/postRv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:setupPostRecyclerView="@{viewmodel.data}"
+            app:setList="@{viewmodel.postAdapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,10 +28,9 @@
             android:id="@+id/postPb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:progressbarVisibility="@{viewmodel.data}"
-            app:layout_constraintBottom_toBottomOf="@+id/postRv"
-            app:layout_constraintEnd_toEndOf="@+id/postRv"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
