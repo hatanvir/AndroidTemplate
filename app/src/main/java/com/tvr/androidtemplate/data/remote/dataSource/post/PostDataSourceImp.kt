@@ -1,13 +1,14 @@
 package com.tvr.androidtemplate.data.remote.dataSource.post
 
 import com.tvr.androidtemplate.data.BaseResponse
+import com.tvr.androidtemplate.data.local.dao.PostDao
 import com.tvr.androidtemplate.data.models.Post
 import com.tvr.androidtemplate.data.remote.services.ApiService
 import java.util.concurrent.Flow
 import javax.inject.Inject
 
 class PostDataSourceImp @Inject constructor(
-    private var apiService: ApiService
+    private var apiService: ApiService,
 ) : PostDataSource {
 
     /**

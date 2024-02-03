@@ -43,7 +43,7 @@ class AppModule {
      */
     @Provides
     @Singleton
-    internal fun getRoomDb(@ApplicationContext context: Context): RoomDatabase{
+    internal fun getRoomDb(@ApplicationContext context: Context): RoomDb{
         return Room.databaseBuilder(
             context, RoomDb::class.java,
             context.getString(R.string.db_name)

@@ -3,17 +3,20 @@ package com.tvr.androidtemplate.data.local.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import com.tvr.androidtemplate.data.local.dto.PostDto
 import androidx.room.Query
+import com.tvr.androidtemplate.data.models.Post
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PostDao {
-    @Query("SELECT * FROM post")
+    @Query("SELECT * FROM PostDto")
     fun getAll(): List<PostDto>
 
-    @Insert
-    fun insertAll(vararg users: PostDto)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(vararg posts: List<PostDto>)
 
     @Delete
-    fun delete(user: PostDto)
+    fun delete(posts: PostDto)
 }

@@ -1,10 +1,31 @@
 package com.tvr.androidtemplate.data.models
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
 
-data class Post(
+import com.google.gson.annotations.SerializedName
+import com.tvr.androidtemplate.data.local.dto.PostDto
+
+class Post(
     var userId : Int    = 0,
     var id     : Int    = 0,
     var title  : String = "",
     var body   : String = ""
-)
+) {
+    companion object{
+        fun toPostDTOs(posts: List<Post>): List<PostDto> {
+            val postDTOs = arrayListOf<PostDto>()
+
+            posts.forEach { postDTOs.add(it.toPostDTO()) }
+
+            return postDTOs
+        }
+    }
+
+    fun toPostDTO(): PostDto {
+        return  PostDto(
+            id = id,
+            body = body,
+            title = title
+        )
+    }
+}

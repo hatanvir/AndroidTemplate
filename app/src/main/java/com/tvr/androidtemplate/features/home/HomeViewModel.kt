@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
 ):ViewModel() {
     fun getPost(){
         viewModelScope.launch {
-            postRepositoryImp.getPost()
+            postRepositoryImp.getPostRemote()
                 .collect{
                     when(it){
                         is BaseResponse.Success-> Log.d("dataaaa", it.data.toString())

@@ -20,7 +20,7 @@ class PostViewModel @Inject constructor(
 
     fun getPost(){
         viewModelScope.launch {
-            postRepositoryImp.getPost()
+            postRepositoryImp.getPostRemote()
                 .onStart { ViewState.Loading }
                 .collect{
                     when(it){
