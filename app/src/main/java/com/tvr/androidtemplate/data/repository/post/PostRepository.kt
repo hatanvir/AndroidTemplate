@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 interface PostRepository {
 
     fun insertPostsLocal(posts:List<PostDto>)
-    fun getPostLocal(): List<PostDto>
+    fun getPostLocal(): Flow<List<Post>>
     suspend fun getPostRemote(): Flow<BaseResponse<Any>>
 }

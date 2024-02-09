@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat
 
 plugins {
     kotlin("kapt")
+    id("kotlin-kapt")
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
@@ -116,9 +118,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
     //Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("com.google.dagger:dagger-compiler:2.47")
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation("androidx.room:room-runtime:2.5.1")
+    annotationProcessor("androidx.room:room-compiler:2.5.1")
+    kapt("androidx.room:room-compiler:2.5.1")
+    implementation("androidx.room:room-ktx:2.5.1")
 
     //hilt
     implementation("com.google.dagger:hilt-android:2.48")

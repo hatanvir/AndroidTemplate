@@ -45,16 +45,26 @@ class PostFragment : Fragment() {
             viewModel.data.collect{
                 when(it){
                     is ViewState.Loading -> {
-                        binding.postPb.visibility = View.VISIBLE
                         binding.postRv.visibility = View.GONE
+                        binding.errorTv.visibility = View.GONE
+                        binding.postPb.visibility = View.VISIBLE
                     }
                     is ViewState.Success -> {
                         binding.postPb.visibility = View.GONE
-                        binding.postRv.visibility = View.VISIBLE
+                        binding.errorTv.visibility = View.GONE
+
+                        if((it.data?: emptyList()).isEmpty()){
+                            binding.errorTv.visibility = View.VISIBLE
+                        }else{
+                            binding.postRv.visibility = View.VISIBLE
+                        }
+
                     }
                     is ViewState.Error -> {
                         binding.postPb.visibility = View.GONE
                         binding.postRv.visibility = View.GONE
+                        binding.errorTv.visibility = View.VISIBLE
+                        binding.errorTv.text = it.message
                     }
                 }
             }

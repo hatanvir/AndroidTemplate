@@ -15,7 +15,7 @@ interface PostDao {
     fun getAll(): List<PostDto>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg posts: List<PostDto>)
+    fun insertAll(posts: List<PostDto>)
 
     @Delete
     fun delete(posts: PostDto)
