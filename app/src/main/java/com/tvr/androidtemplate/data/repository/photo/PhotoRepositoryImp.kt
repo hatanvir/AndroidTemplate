@@ -1,39 +1,42 @@
 package com.tvr.androidtemplate.data.repository.post
 
+import android.util.Log
 import com.tvr.androidtemplate.data.BaseResponse
 import com.tvr.androidtemplate.data.local.RoomDb
+import com.tvr.androidtemplate.data.local.dto.PhotoDto
 import com.tvr.androidtemplate.data.local.dto.PostDto
+import com.tvr.androidtemplate.data.models.Photo
 import com.tvr.androidtemplate.data.models.Post
 
 import com.tvr.androidtemplate.data.remote.services.ApiService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import java.lang.NullPointerException
 import javax.inject.Inject
 
-class PostRepositoryImp @Inject constructor(
+class PhotoRepositoryImp @Inject constructor(
     private val apiService: ApiService,
     private val db: RoomDb
-): PostRepository {
-    override fun insertPostsLocal(posts: List<PostDto>) {
-        db.getPostDao().insertAll(posts)
+): PhotoRepository {
+    override fun insertPhotosLocal(photos: List<PhotoDto>) {
+        db.getPhotoDao().insertAll(photos)
     }
 
-    override fun getPostLocal(): Flow<List<Post>> {
-       return flow { emit(PostDto.toPosts(db.getPostDao().getAll())) }
+    override fun getPhotoLocal(): Flow<List<Photo>> {
+        return flow { emit(PhotoDto.toPhotos(db.getPhotoDao().getAll())) }
     }
 
-    override suspend fun getPostRemote(): Flow<List<Post>> {
+    override suspend fun getPhotoRemote(): Flow<List<Photo>> {
         return flow {
-            insertPostsLocal(Post.toPostDTOs(apiService.getPost().body() as List<Post>))
-            getPostLocal().collect{
+            insertPhotosLocal(Photo.toPhotoDTOs(apiService.getPhoto().body() as List<Photo>))
+            getPhotoLocal().collect{
                 emit(it)
             }
         }
     }
-
 
 }

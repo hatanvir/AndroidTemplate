@@ -5,56 +5,63 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.tvr.androidtemplate.R
+import com.tvr.androidtemplate.base.ViewState
+import com.tvr.androidtemplate.databinding.FragmentPhotoBinding
+import com.tvr.androidtemplate.databinding.FragmentPostBinding
+import com.tvr.androidtemplate.features.post.PostViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PhotoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class PhotoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var binding: FragmentPhotoBinding
+    private val viewModel: PhotoViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_photo, container, false)
+    ): View {
+        binding = FragmentPhotoBinding.inflate(layoutInflater)
+        binding.viewmodel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        viewModel.getPhotos()
+        observeData()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PhotoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PhotoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    /**
+     * observing data from view model
+     */
+    private fun observeData() {
+        lifecycleScope.launch {
+            viewModel.data.collect{
+                when(it){
+                    is ViewState.Loading -> {
+                        binding.photoRv.visibility = View.GONE
+                        binding.errorTv.visibility = View.GONE
+                        binding.postPb.visibility = View.VISIBLE
+                    }
+                    is ViewState.Success -> {
+                        binding.postPb.visibility = View.GONE
+                        binding.errorTv.visibility = View.GONE
+
+                        if((it.data?: emptyList()).isEmpty()){
+                            binding.errorTv.visibility = View.VISIBLE
+                        }else{
+                            binding.photoRv.visibility = View.VISIBLE
+                        }
+
+                    }
+                    is ViewState.Error -> {
+                        binding.postPb.visibility = View.GONE
+                        binding.photoRv.visibility = View.GONE
+                        binding.errorTv.visibility = View.VISIBLE
+                        binding.errorTv.text = it.message
+                    }
                 }
             }
+        }
     }
 }

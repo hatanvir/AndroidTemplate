@@ -26,10 +26,12 @@
 
         <TextView
             android:id="@+id/errorTv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/no_data_found"
             android:visibility="gone"
+            android:padding="10dp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

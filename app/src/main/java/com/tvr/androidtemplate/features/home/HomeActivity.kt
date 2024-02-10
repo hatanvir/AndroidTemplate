@@ -50,15 +50,16 @@ class HomeActivity : AppCompatActivity() {
     private fun setupBottomNavigation() {
        binding.bottomNavigationView.setOnItemSelectedListener {
            when(it.itemId){
-               R.id.action_post-> setFragment(R.id.PostFragment)
-               R.id.action_albums-> setFragment(R.id.PhotoFragment)
-               R.id.action_photos-> setFragment(R.id.PhotoFragment)
-              else -> setFragment(R.id.PostFragment)
+               R.id.action_post-> setFragment(R.id.PostFragment,this.getString(R.string.post))
+               R.id.action_albums-> setFragment(R.id.PhotoFragment,this.getString(R.string.album))
+               R.id.action_photos-> setFragment(R.id.PhotoFragment,this.getString(R.string.photo))
+              else -> setFragment(R.id.PostFragment,this.getString(R.string.todo))
            }
        }
     }
 
-    private fun setFragment(id: Int): Boolean{
+    private fun setFragment(id: Int,title:String): Boolean{
+        binding.toolbar.title = title
         navController.navigate(id)
         return true
     }

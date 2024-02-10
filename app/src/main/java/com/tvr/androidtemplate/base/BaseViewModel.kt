@@ -15,8 +15,6 @@ abstract class BaseViewModel<T> : ViewModel() {
     lateinit var sharedPref: SharedPref
 
     protected val _data = MutableStateFlow<ViewState<T>>(ViewState.Loading)
-    protected val progressBarVisibility = MutableLiveData<ViewState<T>>()
-    protected val errorVisibility = MutableLiveData<ViewState<T>>()
 
     val data: StateFlow<ViewState<T>> = _data
 }

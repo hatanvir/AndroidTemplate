@@ -9,5 +9,5 @@ interface PostRepository {
 
     fun insertPostsLocal(posts:List<PostDto>)
     fun getPostLocal(): Flow<List<Post>>
-    suspend fun getPostRemote(): Flow<BaseResponse<Any>>
+    suspend fun getPostRemote(): Flow<List<Post>>
 }
