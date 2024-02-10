@@ -5,6 +5,10 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.tvr.androidtemplate.data.local.dto.PostDto
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 class Post(
     var userId : Int    = 0,
     var id     : Int    = 0,

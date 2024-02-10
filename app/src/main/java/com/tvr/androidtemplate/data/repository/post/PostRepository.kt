@@ -5,6 +5,10 @@ import com.tvr.androidtemplate.data.local.dto.PostDto
 import com.tvr.androidtemplate.data.models.Post
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 interface PostRepository {
 
     fun insertPostsLocal(posts:List<PostDto>)

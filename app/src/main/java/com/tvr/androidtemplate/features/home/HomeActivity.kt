@@ -12,7 +12,10 @@ import androidx.navigation.NavController
 import com.tvr.androidtemplate.R
 import com.tvr.androidtemplate.databinding.ActivityHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 

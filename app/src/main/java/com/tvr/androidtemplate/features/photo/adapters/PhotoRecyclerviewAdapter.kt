@@ -8,7 +8,10 @@ import com.tvr.androidtemplate.R
 import com.tvr.androidtemplate.base.BaseViewHolder
 import com.tvr.androidtemplate.data.models.Photo
 import com.tvr.androidtemplate.databinding.ItemPhotoBinding
-
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 class PhotoRecyclerviewAdapter(private var photoList: List<Photo>) : RecyclerView.Adapter<BaseViewHolder>() {
 
     fun updatePhotos(items: List<Photo>) {

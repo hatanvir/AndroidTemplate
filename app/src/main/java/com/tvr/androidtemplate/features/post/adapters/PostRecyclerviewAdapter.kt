@@ -9,6 +9,10 @@ import com.tvr.androidtemplate.base.BaseViewHolder
 import com.tvr.androidtemplate.data.models.Post
 import com.tvr.androidtemplate.databinding.ItemPostBinding
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 class PostRecyclerviewAdapter(private var postList: List<Post>) : RecyclerView.Adapter<BaseViewHolder>() {
 
     fun updatePosts(items: List<Post>) {

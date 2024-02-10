@@ -4,6 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.tvr.androidtemplate.data.models.Post
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @Entity
 class PostDto(
     @PrimaryKey(autoGenerate = true)

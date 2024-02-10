@@ -9,6 +9,10 @@ import androidx.room.Query
 import com.tvr.androidtemplate.data.models.Post
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @Dao
 interface PostDao {
     @Query("SELECT * FROM PostDto")

@@ -1,16 +1,14 @@
 package com.tvr.androidtemplate.features.photo
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.tvr.androidtemplate.MyApp
 import com.tvr.androidtemplate.R
 import com.tvr.androidtemplate.base.BaseViewModel
 import com.tvr.androidtemplate.base.ViewState
-import com.tvr.androidtemplate.data.BaseResponse
 import com.tvr.androidtemplate.data.models.Photo
-import com.tvr.androidtemplate.data.models.Post
-import com.tvr.androidtemplate.data.repository.post.PhotoRepositoryImp
+import com.tvr.androidtemplate.data.repository.photo.PhotoRepositoryImp
 import com.tvr.androidtemplate.features.photo.adapters.PhotoRecyclerviewAdapter
+import com.tvr.androidtemplate.helper.CustomToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -19,6 +17,10 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @HiltViewModel
 class PhotoViewModel @Inject constructor(
     private var photoRepositoryImp: PhotoRepositoryImp
@@ -34,7 +36,7 @@ class PhotoViewModel @Inject constructor(
                 .flowOn(Dispatchers.IO)
                 .onStart { _data.value = ViewState.Loading }
                 .catch {
-                    handleException()
+                    handleException(it.message)
                 }
                 .collect {
                     _data.value = ViewState.Success(it)
@@ -50,7 +52,8 @@ class PhotoViewModel @Inject constructor(
     //this segment will call when some error happens
     //like network error and other error
     //here we are getting data from local db
-    private suspend fun handleException() {
+    private suspend fun handleException(message: String?) {
+        CustomToast.showToast(message?:MyApp.instance.getString(R.string.something_went_wrong))
         photoRepositoryImp.getPhotoLocal()
             .flowOn(Dispatchers.IO)
             .catch {

@@ -7,6 +7,11 @@ import com.bumptech.glide.Glide
 import com.tvr.androidtemplate.R
 import com.tvr.androidtemplate.base.BaseViewHolder
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
+
 @BindingAdapter("setList")
 fun setListAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<BaseViewHolder>) {
     recyclerView.adapter = adapter

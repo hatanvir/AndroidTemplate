@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import javax.inject.Inject
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 abstract class BaseActivity <T : BaseViewModel<*>, ViewBindingType : ViewBinding> : AppCompatActivity() {
 
 

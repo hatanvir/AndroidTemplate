@@ -1,6 +1,10 @@
 package com.tvr.androidtemplate.data.local
 import android.content.SharedPreferences
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 class SharedPref constructor(private var sharedPreferences: SharedPreferences) {
     /**
      * all shared pref key will go there

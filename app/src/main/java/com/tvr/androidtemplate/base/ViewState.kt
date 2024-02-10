@@ -1,5 +1,9 @@
 package com.tvr.androidtemplate.base
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 sealed interface ViewState<out T> {
 
     data class Success<T>(val data: T?) : ViewState<T>

@@ -7,6 +7,10 @@ import com.tvr.androidtemplate.data.local.dao.PostDao
 import com.tvr.androidtemplate.data.local.dto.PhotoDto
 import com.tvr.androidtemplate.data.local.dto.PostDto
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @Database(
     entities =
     [

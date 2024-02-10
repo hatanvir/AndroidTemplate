@@ -19,6 +19,10 @@ import com.tvr.androidtemplate.features.post.adapters.PostRecyclerviewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @AndroidEntryPoint
 class PostFragment : Fragment() {
     private lateinit var binding: FragmentPostBinding

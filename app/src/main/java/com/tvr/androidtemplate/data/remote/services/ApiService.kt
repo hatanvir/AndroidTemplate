@@ -5,6 +5,10 @@ import com.tvr.androidtemplate.data.models.Post
 import retrofit2.Response
 import retrofit2.http.GET
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 interface ApiService {
     @GET("/posts")
     suspend fun getPost(): Response<List<Post>>

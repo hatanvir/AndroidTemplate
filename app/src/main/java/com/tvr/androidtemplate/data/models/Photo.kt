@@ -3,6 +3,10 @@ package com.tvr.androidtemplate.data.models
 import com.tvr.androidtemplate.data.local.dto.PhotoDto
 import com.tvr.androidtemplate.data.local.dto.PostDto
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 class Photo(
     var albumId: Int = 0,
     var id: Int = 0,

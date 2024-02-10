@@ -15,6 +15,10 @@ import com.tvr.androidtemplate.features.post.PostViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @AndroidEntryPoint
 class PhotoFragment : Fragment() {
     private lateinit var binding: FragmentPhotoBinding

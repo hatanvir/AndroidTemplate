@@ -3,6 +3,10 @@ package com.tvr.androidtemplate
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @HiltAndroidApp
 class MyApp: Application() {
     companion object{

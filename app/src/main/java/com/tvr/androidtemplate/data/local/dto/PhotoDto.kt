@@ -5,6 +5,10 @@ import androidx.room.PrimaryKey
 import com.tvr.androidtemplate.data.models.Photo
 import com.tvr.androidtemplate.data.models.Post
 
+/**
+ * Created By Tanvir Hasan
+ * Email: tanvirhasan553@gmail.com
+ */
 @Entity
 class PhotoDto(
     @PrimaryKey(autoGenerate = true)
