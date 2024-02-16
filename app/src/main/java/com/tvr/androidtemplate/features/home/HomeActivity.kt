@@ -1,14 +1,18 @@
 package com.tvr.androidtemplate.features.home
 
 import android.os.Bundle
+import android.view.ContextMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.NavController
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.tvr.androidtemplate.R
 import com.tvr.androidtemplate.databinding.ActivityHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var navController: NavController
     private val viewModel: HomeViewModel by viewModels()
+    lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,27 +35,26 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupBottomNavigation()
+        //setupBottomNavigation()
         //setSupportActionBar(binding.toolbar)
 
-        //viewModel.getPost()
-
         navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
         //setupActionBarWithNavController(navController, appBarConfiguration)
-
-        /*binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }*/
-
+        //binding.bottomNavigationView.setupWithNavController(navController)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_post, R.id.nav_albums, R.id.nav_photo,R.id.nav_todo
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.bottomNavigationView.setupWithNavController(navController)
 
     }
 
     /**
      * populating bottom navigation here
      */
-    private fun setupBottomNavigation() {
+   /* private fun setupBottomNavigation() {
        binding.bottomNavigationView.setOnItemSelectedListener {
            when(it.itemId){
                R.id.action_post-> setFragment(R.id.PostFragment,this.getString(R.string.post))
@@ -59,10 +63,10 @@ class HomeActivity : AppCompatActivity() {
               else -> setFragment(R.id.PostFragment,this.getString(R.string.todo))
            }
        }
-    }
+    }*/
 
     private fun setFragment(id: Int,title:String): Boolean{
-        binding.toolbar.title = title
+        //binding.toolbar.title = title
         navController.navigate(id)
         return true
     }
@@ -71,6 +75,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+        this.menu = menu
         return true
     }
 

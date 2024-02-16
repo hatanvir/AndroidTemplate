@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/PostFragment">
+    app:startDestination="@id/nav_post">
 
     <fragment
-        android:id="@+id/PostFragment"
+        android:id="@+id/nav_post"
         android:name="com.tvr.androidtemplate.features.post.PostFragment"
         android:label="@string/post"
         tools:layout="@layout/fragment_post">
+        <action
+            android:id="@+id/action_PostFragment_to_PostEditActivity"
+            app:destination="@id/PostEditActivity" />
     </fragment>
 
     <fragment
-        android:id="@+id/PhotoFragment"
+        android:id="@+id/nav_photo"
         android:name="com.tvr.androidtemplate.features.photo.PhotoFragment"
         android:label="@string/photo"
         tools:layout="@layout/fragment_photo">
     </fragment>
 
 
-   <!--<fragment
-       android:id="@+id/SecondFragment"
-       android:name="com.tvr.androidtemplate.SecondFragment"
-       android:label="@string/second_fragment_label"
-       tools:layout="@layout/fragment_second">
+   <activity
+       android:id="@+id/PostEditActivity"
+       android:name="com.tvr.androidtemplate.features.postEdit.PostEditActivity"
+       android:label="@string/post_edit"
+       tools:layout="@layout/activity_post_edit">
 
-       <action
-           android:id="@+id/action_SecondFragment_to_FirstFragment"
-           app:destination="@id/FirstFragment" />
-   </fragment>-->
+   </activity>
 </navigation>

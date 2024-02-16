@@ -8,21 +8,29 @@ import com.tvr.androidtemplate.R
 import com.tvr.androidtemplate.base.BaseViewHolder
 import com.tvr.androidtemplate.data.models.Post
 import com.tvr.androidtemplate.databinding.ItemPostBinding
+import com.tvr.androidtemplate.listeners.PostItemClickListeners
 
 /**
  * Created By Tanvir Hasan
  * Email: tanvirhasan553@gmail.com
  */
-class PostRecyclerviewAdapter(private var postList: List<Post>) : RecyclerView.Adapter<BaseViewHolder>() {
-
+class PostRecyclerviewAdapter(
+    private var postList: List<Post>,
+    private var postItemClickListeners: PostItemClickListeners
+) :
+    RecyclerView.Adapter<BaseViewHolder>() {
     fun updatePosts(items: List<Post>) {
         postList = items
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-       return PostListHolder(DataBindingUtil.inflate(
-           LayoutInflater.from(parent.context),
-           R.layout.item_post, parent, false))
+        return PostListHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_post, parent, false
+            ), postItemClickListeners
+        )
     }
 
     override fun getItemCount(): Int {
@@ -32,11 +40,17 @@ class PostRecyclerviewAdapter(private var postList: List<Post>) : RecyclerView.A
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         postList[position].let { holder.onBindView(it) }
     }
-}
 
-
-class PostListHolder(private val itemBinding: ItemPostBinding): BaseViewHolder(itemBinding.root) {
-    override fun onBindView(dataItem: Any) {
-        itemBinding.post = dataItem as Post
+    class PostListHolder(
+        private val itemBinding: ItemPostBinding,
+        private var postItemClickListeners: PostItemClickListeners
+    ) :
+        BaseViewHolder(itemBinding.root) {
+        override fun onBindView(dataItem: Any) {
+            itemBinding.post = dataItem as Post
+            itemBinding.editIm.setOnClickListener {
+                postItemClickListeners.onClickEdit(dataItem)
+            }
+        }
     }
 }

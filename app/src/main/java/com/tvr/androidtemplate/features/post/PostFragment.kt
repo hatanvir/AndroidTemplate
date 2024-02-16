@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.tvr.androidtemplate.R
 import com.tvr.androidtemplate.base.ViewState
 import com.tvr.androidtemplate.databinding.ActivityHomeBinding
@@ -32,13 +33,29 @@ class PostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentPostBinding.inflate(layoutInflater)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel.getPost()
-        observeData();
+        observeData()
+        observeNavigation()
         return binding.root;
+    }
+
+    /**
+     * observe this fragment navigation here
+     */
+    private fun observeNavigation() {
+        lifecycleScope.launch {
+            viewModel.navigation.collect{
+                when (it){
+                    R.id.action_PostFragment_to_PostEditActivity -> {
+                        findNavController().navigate(it)
+                        viewModel.navigation.value = 0
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -57,6 +74,8 @@ class PostFragment : Fragment() {
                         binding.postPb.visibility = View.GONE
                         binding.errorTv.visibility = View.GONE
 
+                        //checking our list is empty or not
+                        //if empty then show empty text
                         if((it.data?: emptyList()).isEmpty()){
                             binding.errorTv.visibility = View.VISIBLE
                         }else{
