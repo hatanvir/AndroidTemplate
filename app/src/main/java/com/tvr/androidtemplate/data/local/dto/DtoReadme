@@ -1,0 +1,25 @@
+
+MODELS
+--------------------------------------
+* models are responsible for handle real (like which we set the data to ui)
+* Ex: if we have Photo Dto then we have to convert it to Model to handle the data with UI
+* we need conversion because our local db is only know about dto class
+* and we are handling our ui with model
+
+
+DTO
+--------------------------------------
+* dto are responsible for handle local data
+* Ex: if we have Photo model then we have to convert it to photoDto to insert on local db
+* we need conversion because our local db is only knows about dto class
+
+
+Function: toModels (Ex: toPhotos,toPosts)
+---------------------------------------
+* converting list of dto to models
+* while getting data from local
+
+Function: toModel (Ex: toPhoto,toPost)
+---------------------------------------
+* converting dto to model
+* while getting data from local

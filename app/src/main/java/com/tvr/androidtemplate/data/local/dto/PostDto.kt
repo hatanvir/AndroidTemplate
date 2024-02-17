@@ -7,6 +7,8 @@ import com.tvr.androidtemplate.data.models.Post
 /**
  * Created By Tanvir Hasan
  * Email: tanvirhasan553@gmail.com
+ *
+ * this class is responsible to handle local data
  */
 @Entity
 class PostDto(
@@ -19,17 +21,17 @@ class PostDto(
         fun toPosts(posDtos: List<PostDto>): List<Post> {
             val posts = arrayListOf<Post>()
 
-            posDtos.forEach { posts.add(it.toPost(it)) }
+            posDtos.forEach { posts.add(it.toPost()) }
 
             return posts
         }
     }
 
-    fun toPost(post: PostDto): Post {
+    fun toPost(): Post {
         return Post(
-            id = post.id,
-            title = post.title,
-            body = post.body
+            id = id,
+            title = title,
+            body = body
         )
     }
 }

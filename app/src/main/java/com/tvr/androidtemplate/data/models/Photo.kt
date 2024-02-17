@@ -1,7 +1,6 @@
 package com.tvr.androidtemplate.data.models
 
 import com.tvr.androidtemplate.data.local.dto.PhotoDto
-import com.tvr.androidtemplate.data.local.dto.PostDto
 
 /**
  * Created By Tanvir Hasan
@@ -15,6 +14,7 @@ class Photo(
     var thumbnailUrl: String = ""
 ) {
     companion object {
+
         fun toPhotoDTOs(photos: List<Photo>): List<PhotoDto> {
             val photoDTOs = arrayListOf<PhotoDto>()
 
