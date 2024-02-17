@@ -9,6 +9,8 @@ import okhttp3.Response
  * Email: tanvirhasan553@gmail.com
  *
  * Created the interceptor to add token on header to our request
+ * not using this for this project
+ * added for quick use in near future
  */
 class TokenSetupInterceptor constructor(
     private val sharedPref: SharedPref

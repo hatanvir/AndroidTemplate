@@ -23,5 +23,5 @@ class NetworkConnectionInterceptor :Interceptor{
 
 class NoConnectivityException : IOException() {
     override val message: String
-        get() = "No internet connection"
+        get() = MyApp.instance.getString(R.string.no_internet_connection)
 }

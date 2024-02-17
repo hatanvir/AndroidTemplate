@@ -2,6 +2,7 @@ package com.tvr.androidtemplate.di
 
 import android.content.Context
 import com.tvr.androidtemplate.data.local.SharedPref
+import com.tvr.androidtemplate.interceptors.LogoutInterceptor
 import com.tvr.androidtemplate.interceptors.NetworkConnectionInterceptor
 import com.tvr.androidtemplate.interceptors.TokenSetupInterceptor
 import dagger.Module
@@ -27,12 +28,14 @@ object OkHttpModule {
         cache: Cache,
         interceptor: HttpLoggingInterceptor,
         networkConnectionInterceptor: NetworkConnectionInterceptor,
-        setupTokenInterceptor: TokenSetupInterceptor
+        setupTokenInterceptor: TokenSetupInterceptor,
+        logoutInterceptor: LogoutInterceptor
     ): OkHttpClient {
         return OkHttpClient().newBuilder()
             .addInterceptor(interceptor)
             .addInterceptor(networkConnectionInterceptor)
             .addInterceptor(setupTokenInterceptor)
+            .addInterceptor(logoutInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
@@ -63,5 +66,8 @@ object OkHttpModule {
 
     @Provides
     internal fun setupTokenInterceptor(sharedPref: SharedPref) = TokenSetupInterceptor(sharedPref)
+
+    @Provides
+    internal fun logoutInterceptor() = LogoutInterceptor()
 
 }
