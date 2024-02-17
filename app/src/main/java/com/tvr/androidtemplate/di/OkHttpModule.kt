@@ -1,18 +1,17 @@
 package com.tvr.androidtemplate.di
 
 import android.content.Context
-import android.util.Log
+import com.tvr.androidtemplate.data.local.SharedPref
 import com.tvr.androidtemplate.interceptors.NetworkConnectionInterceptor
+import com.tvr.androidtemplate.interceptors.TokenSetupInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import timber.log.Timber
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -27,11 +26,13 @@ object OkHttpModule {
     internal fun okHttpClient(
         cache: Cache,
         interceptor: HttpLoggingInterceptor,
-        networkConnectionInterceptor: NetworkConnectionInterceptor
+        networkConnectionInterceptor: NetworkConnectionInterceptor,
+        setupTokenInterceptor: TokenSetupInterceptor
     ): OkHttpClient {
         return OkHttpClient().newBuilder()
             .addInterceptor(interceptor)
             .addInterceptor(networkConnectionInterceptor)
+            .addInterceptor(setupTokenInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
@@ -59,5 +60,8 @@ object OkHttpModule {
 
     @Provides
     internal fun internetConnectionInterceptor() = NetworkConnectionInterceptor()
+
+    @Provides
+    internal fun setupTokenInterceptor(sharedPref: SharedPref) = TokenSetupInterceptor(sharedPref)
 
 }
