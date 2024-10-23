@@ -17,6 +17,7 @@ import com.tvr.androidtemplate.databinding.ActivityHomeBinding
 import com.tvr.androidtemplate.databinding.FragmentPostBinding
 import com.tvr.androidtemplate.features.home.HomeViewModel
 import com.tvr.androidtemplate.features.post.adapters.PostRecyclerviewAdapter
+import com.tvr.androidtemplate.utils.BundleKey
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -50,7 +51,10 @@ class PostFragment : Fragment() {
             viewModel.navigation.collect{
                 when (it){
                     R.id.action_PostFragment_to_PostEditActivity -> {
-                        findNavController().navigate(it)
+                        val bundle = Bundle().apply {
+                            putParcelable(BundleKey.POST,viewModel.postData.value)
+                        }
+                        findNavController().navigate(it,bundle)
                         viewModel.navigation.value = 0
                     }
                 }

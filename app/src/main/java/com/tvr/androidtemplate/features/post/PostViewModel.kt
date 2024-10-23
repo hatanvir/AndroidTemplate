@@ -31,6 +31,7 @@ class PostViewModel @Inject constructor(
 ) : BaseViewModel<List<Post>>(), PostItemClickListeners {
     val postAdapter: PostRecyclerviewAdapter = PostRecyclerviewAdapter(emptyList(), this)
     val navigation = MutableStateFlow(0)
+    val postData = MutableStateFlow(Post())
 
     /**
      * getting post list here
@@ -77,5 +78,6 @@ class PostViewModel @Inject constructor(
      */
     override fun onClickEdit(post: Post) {
         navigation.value = R.id.action_PostFragment_to_PostEditActivity
+        postData.value = post
     }
 }

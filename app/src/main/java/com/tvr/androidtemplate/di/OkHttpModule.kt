@@ -33,9 +33,6 @@ object OkHttpModule {
     ): OkHttpClient {
         return OkHttpClient().newBuilder()
             .addInterceptor(interceptor)
-            .addInterceptor(networkConnectionInterceptor)
-            .addInterceptor(setupTokenInterceptor)
-            .addInterceptor(logoutInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
